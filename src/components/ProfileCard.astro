@@ -10,6 +10,7 @@ import { profile, sitePath } from '../data/site';
     <a href={profile.github}>GitHub</a>
     {profile.email && <a href={`mailto:${profile.email}`}>Email</a>}
     <a href={sitePath('research/')}>Research</a>
+    <a href={sitePath(profile.cvUrl)} download>CV ↓</a>
   </div>
   <section>
     <h2>About</h2>

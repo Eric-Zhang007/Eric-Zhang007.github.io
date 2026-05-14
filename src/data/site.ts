@@ -6,6 +6,7 @@ export const profile = {
   location: 'China',
   github: 'https://github.com/Eric-Zhang007',
   email: '',
+  cvUrl: 'files/Jiachang_Zhang_CV.pdf',
   intro:
     '学生 / AI researcher. 关注 world models、自动驾驶、视觉风险理解、VLM / video reasoning、object-centric reasoning 与 embodied intelligence。',
 };
