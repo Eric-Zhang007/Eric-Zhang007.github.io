@@ -14,31 +14,11 @@ draft: false
 
 <div class="paper-card">
 
-<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13245" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13245</a><a href="https://hjfy.top/arxiv/2607.13245" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13245</a></div>
+<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.14005" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.14005</a><a href="https://hjfy.top/arxiv/2607.14005" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.14005</a></div>
 
-## ⚡ 2607.13245
+## ⚡ M⁴World: A Multi-view Multimodal Driving World Model
 
-<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13245.png" alt="2607.13245" loading="lazy" /></figure>
-
-</div>
-
-<div class="paper-card">
-
-<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13305" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13305</a><a href="https://hjfy.top/arxiv/2607.13305" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13305</a></div>
-
-## ⚡ 2607.13305
-
-<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13305.png" alt="2607.13305" loading="lazy" /></figure>
-
-</div>
-
-<div class="paper-card">
-
-<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13421" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13421</a><a href="https://hjfy.top/arxiv/2607.13421" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13421</a></div>
-
-## ⚡ 2607.13421
-
-<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13421.png" alt="2607.13421" loading="lazy" /></figure>
+<figure class="paper-card-figure"><img src="/images/blog/paper-2607.14005.png" alt="M⁴World: A Multi-view Multimodal Driving World Model" loading="lazy" /></figure>
 
 </div>
 
@@ -46,17 +26,9 @@ draft: false
 
 <div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13481" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13481</a><a href="https://hjfy.top/arxiv/2607.13481" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13481</a></div>
 
-## ⚡ 2607.13481
+## ⚡ GPOcc++: Unified Sparse Gaussian Occupancy Prediction
 
-<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13481.png" alt="2607.13481" loading="lazy" /></figure>
-
-</div>
-
-<div class="paper-card">
-
-<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13612" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13612</a><a href="https://hjfy.top/arxiv/2607.13612" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13612</a></div>
-
-## ⚡ 2607.13612
+<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13481.png" alt="GPOcc++: Unified Sparse Gaussian Occupancy Prediction" loading="lazy" /></figure>
 
 </div>
 
@@ -64,9 +36,19 @@ draft: false
 
 <div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13681" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13681</a><a href="https://hjfy.top/arxiv/2607.13681" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13681</a></div>
 
-## ⚡ 2607.13681
+## ⚡ Towards Spatial Supersensing in the Wild
 
-<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13681.png" alt="2607.13681" loading="lazy" /></figure>
+<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13681.png" alt="Towards Spatial Supersensing in the Wild" loading="lazy" /></figure>
+
+</div>
+
+<div class="paper-card">
+
+<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13305" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13305</a><a href="https://hjfy.top/arxiv/2607.13305" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13305</a></div>
+
+## ⚡ Accuracy Without Grounding
+
+<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13305.png" alt="Accuracy Without Grounding" loading="lazy" /></figure>
 
 </div>
 
@@ -74,19 +56,37 @@ draft: false
 
 <div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13927" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13927</a><a href="https://hjfy.top/arxiv/2607.13927" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13927</a></div>
 
-## ⚡ 2607.13927
+## ⚡ Cyclone: Cycle-Consistent Weather Editing
 
-<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13927.png" alt="2607.13927" loading="lazy" /></figure>
+<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13927.png" alt="Cyclone: Cycle-Consistent Weather Editing" loading="lazy" /></figure>
 
 </div>
 
 <div class="paper-card">
 
-<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.14005" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.14005</a><a href="https://hjfy.top/arxiv/2607.14005" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.14005</a></div>
+<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13421" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13421</a><a href="https://hjfy.top/arxiv/2607.13421" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13421</a></div>
 
-## ⚡ 2607.14005
+## ⚡ ScanFocus: Coarse-to-Fine STVG
 
-<figure class="paper-card-figure"><img src="/images/blog/paper-2607.14005.png" alt="2607.14005" loading="lazy" /></figure>
+<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13421.png" alt="ScanFocus: Coarse-to-Fine STVG" loading="lazy" /></figure>
+
+</div>
+
+<div class="paper-card">
+
+<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13245" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13245</a><a href="https://hjfy.top/arxiv/2607.13245" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13245</a></div>
+
+## ⚡ JITOMA: Just-In-Time Scene Graph Growth
+
+<figure class="paper-card-figure"><img src="/images/blog/paper-2607.13245.png" alt="JITOMA: Just-In-Time Scene Graph Growth" loading="lazy" /></figure>
+
+</div>
+
+<div class="paper-card">
+
+<div class="paper-links paper-links-inline"><a href="https://arxiv.org/abs/2607.13612" target="_blank" rel="noreferrer"><span>Arxiv ID</span>2607.13612</a><a href="https://hjfy.top/arxiv/2607.13612" target="_blank" rel="noreferrer"><span>幻觉翻译</span>2607.13612</a></div>
+
+## ⚡ SIGReg Objective as Variational Free Energy
 
 </div>
 
