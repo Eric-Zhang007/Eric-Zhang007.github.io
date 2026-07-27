@@ -1,39 +1,53 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProfileCard from '../components/ProfileCard.astro';
-import { educationEntries, profile } from '../data/site';
+import { activities, educationEntries, profile } from '../data/site';
 ---
 
-<BaseLayout title="About • Eric Zhang">
+<BaseLayout title="About · Jiachang Zhang">
   <main class="layout">
     <ProfileCard />
 
     <section class="content">
-      <section class="page-title card">
+      <section class="page-title about-title">
+        <p class="kicker">About</p>
         <h1>{profile.name}</h1>
-        <p>{profile.intro}</p>
+        <p>
+          I am an undergraduate researcher in Artificial Intelligence at Xi'an Jiaotong University (XJTU),
+          currently interning at the DMCV Lab, Shanghai Jiao Tong University.
+        </p>
       </section>
 
-      <section class="card list-card">
+      <section class="quiet-panel">
         <div class="section-title">
           <h2>Education</h2>
         </div>
-        {
-          educationEntries.length > 0 ? (
-            <div class="timeline">
-              {educationEntries.map((item) => (
-                <article>
-                  <div>
-                    <h3>{item.school}</h3>
-                    <p>{item.degree}</p>
-                    {item.description && <p>{item.description}</p>}
-                  </div>
-                  <time>{item.period}</time>
-                </article>
-              ))}
-            </div>
-          ) : null
-        }
+        <div class="timeline">
+          {educationEntries.map((item) => (
+            <article>
+              <div>
+                <h3>{item.school}</h3>
+                <p>{item.degree}</p>
+                {item.description && <p>{item.description}</p>}
+              </div>
+              <time>{item.period}</time>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="quiet-panel">
+        <div class="section-title">
+          <h2>Current</h2>
+        </div>
+        <div class="item-list">
+          {activities.map((item) => (
+            <article>
+              <h3>{item.title}</h3>
+              <time>{item.date}</time>
+            </article>
+          ))}
+        </div>
       </section>
     </section>
   </main>

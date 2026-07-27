@@ -1,7 +1,8 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const root = new URL('..', import.meta.url).pathname;
+const root = fileURLToPath(new URL('..', import.meta.url));
 const dist = join(root, 'dist');
 const requiredPages = [
   'index.html',
@@ -32,6 +33,7 @@ const notes = read('notes/index.html');
 const projects = read('projects/index.html');
 const article = read('blog/jepa-introduction/index.html');
 const login = read('login/index.html');
+const about = read('about/index.html');
 const worldModels = read('blog/collections/world-models/index.html');
 const css = readdirSync(join(dist, '_astro'))
   .filter((file) => file.endsWith('.css'))
@@ -58,7 +60,7 @@ const forbidden = [
   '真实经历',
 ];
 
-for (const text of forbidden) {
+for (const text of [...forbidden, 'Eric Zhang', 'World models for autonomous driving', 'Visual collision / accident anticipation']) {
   for (const [name, html] of Object.entries({ homepage, blog, research, notes, projects, article })) {
     if (html.includes(text)) {
       throw new Error(`Found placeholder/fake content in ${name}: ${text}`);
@@ -67,18 +69,20 @@ for (const text of forbidden) {
 }
 
 const pageChecks = {
-  homepage: ['href="/astro-github-pages-site/blog/"', 'href="/astro-github-pages-site/research/"'],
-  blog: ['Collections', 'Tags', 'href="/astro-github-pages-site/tags/JEPA/"', 'View all posts by years', 'jepa-introduction'],
-  research: ['Page 1 - Showing 5 of 5 interests', 'Collections', 'Tags', 'Research interests'],
+  homepage: ['Jiachang Zhang', 'Research Intern at SJTU DMCV Lab', 'Embodied Failure-Recovery Data Collection', 'LingBot Video MoE Routing'],
+  blog: ['Collections', 'Tags', 'href="/tags/JEPA/"', 'View all posts by years', 'jepa-introduction'],
+  research: ['Embodied AI', 'World Models', 'Current work'],
   notes: ['Page 1 - Showing 0 of 0 notes', 'Collections', 'Tags'],
-  projects: ['Page 1 - Showing 0 of 0 projects', 'Collections', 'Tags'],
+  projects: ['Embodied Failure-Recovery Data Collection', 'LingBot Video MoE Routing', 'Multi-Agent World-Model Data Collection', 'images/projects/embodied-failure-recovery.png', 'images/projects/lingbot-moe.png'],
   article: ['toc-panel', 'Comments', 'Arxiv ID', '幻觉翻译', 'paper-figure-link', 'collection-list', 'World Models', 'article-info-card', 'Buy me a cup of coffee', 'post-neighbors', 'CC BY-NC-SA 4.0'],
   login: ['Content manager', 'GitHub token', 'Only', 'Commit post to GitHub', 'New collection label', 'arXiv ID'],
   worldModels: ['World Models', 'JEPA：一种面向世界模型的自监督学习思路'],
 };
 
+pageChecks.about = ['XJTU', 'Artificial Intelligence', 'Jiachang Zhang'];
+
 for (const [name, needles] of Object.entries(pageChecks)) {
-  const html = { homepage, blog, research, notes, projects, article, login, worldModels }[name];
+  const html = { homepage, blog, research, notes, projects, article, login, worldModels, about }[name];
   for (const needle of needles) {
     if (!html.includes(needle)) {
       throw new Error(`${name} missing expected content: ${needle}`);
@@ -104,8 +108,19 @@ if (homepage.includes('login/')) {
   throw new Error('Login should stay hidden from homepage navigation.');
 }
 
-if (research.includes('href="/astro-github-pages-site/tags/World%20models')) {
+if (research.includes('href="/tags/World%20models')) {
   throw new Error('Research tags are not article-derived; research interests should not become tag links.');
+}
+
+for (const asset of [
+  'images/profile/jiachang-zhang.jpg',
+  'images/projects/embodied-failure-recovery.png',
+  'images/projects/lingbot-moe.png',
+  'files/Jiachang_Zhang_Research_CV.pdf',
+]) {
+  if (!existsSync(join(dist, asset))) {
+    throw new Error(`Missing public research asset: ${asset}`);
+  }
 }
 
 console.log('Site verification passed');

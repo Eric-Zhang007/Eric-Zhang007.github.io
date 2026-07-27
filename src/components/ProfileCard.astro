@@ -3,14 +3,18 @@ import { profile, sitePath } from '../data/site';
 ---
 
 <aside class="profile-card" id="about">
-  <div class="avatar" aria-hidden="true">E</div>
+  <img
+    class="avatar"
+    src={sitePath('images/profile/jiachang-zhang.jpg')}
+    alt="Portrait of Jiachang Zhang"
+  />
   <h1>{profile.name}</h1>
   <p class="location">{profile.location}</p>
   <div class="links">
     <a href={profile.github}>GitHub</a>
-    {profile.email && <a href={`mailto:${profile.email}`}>Email</a>}
+    <a href={`mailto:${profile.email}`}>Email</a>
     <a href={sitePath('research/')}>Research</a>
-    <a href={sitePath(profile.cvUrl)} download>CV ↓</a>
+    <a href={sitePath(profile.cvUrl)} download>CV</a>
   </div>
   <section>
     <h2>About</h2>

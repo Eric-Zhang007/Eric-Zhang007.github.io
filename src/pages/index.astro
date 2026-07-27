@@ -4,8 +4,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ProfileCard from '../components/ProfileCard.astro';
 import {
   activities,
-  educationEntries,
+  projects,
   researchInterests,
+  researchThemes,
   sitePath,
 } from '../data/site';
 
@@ -15,90 +16,103 @@ const recentPosts = (await getCollection('blog'))
   .slice(0, 3);
 ---
 
-<BaseLayout>
+<BaseLayout title="Jiachang Zhang · Research">
   <main class="layout">
     <ProfileCard />
 
     <section class="content">
-      <section class="intro card intro-compact">
-        <p class="kicker">Personal homepage</p>
-        <h2>Eric Zhang</h2>
+      <section class="research-hero">
+        <p class="kicker">Jiachang Zhang · AI Research</p>
+        <h1>World models<br />for agents in<br />the <em>real world.</em></h1>
+        <p class="hero-copy">
+          Undergraduate researcher at XJTU and Research Intern at SJTU DMCV Lab.
+          I work on embodied AI, world models, and data for learning systems.
+        </p>
         <div class="hero-links">
-          <a href={sitePath('blog/')}>Blog</a>
           <a href={sitePath('research/')}>Research</a>
-          <a href={sitePath('projects/')}>Projects</a>
+          <a href={sitePath('projects/')}>Selected work</a>
+          <a href={sitePath('files/Jiachang_Zhang_Research_CV.pdf')} download>Research CV</a>
         </div>
       </section>
 
-      <section class="two-column">
-        <div class="card">
-          <div class="section-title">
-            <h2>Research interests</h2>
-          </div>
-          <div class="chips">
-            {researchInterests.map((item) => <span>{item}</span>)}
-          </div>
-        </div>
+      <section class="signal-row" aria-label="Research interests">
+        {researchInterests.map((item) => <span>{item}</span>)}
+      </section>
 
-        <div class="card">
-          <div class="section-title">
-            <h2>Education</h2>
-          </div>
-          {
-            educationEntries.length > 0 ? (
-              <div class="timeline">
-                {educationEntries.map((item) => (
-                  <article>
-                    <div>
-                      <h3>{item.school}</h3>
-                      <p>{item.degree}</p>
-                      {item.description && <p>{item.description}</p>}
-                    </div>
-                    <time>{item.period}</time>
-                  </article>
-                ))}
+      <section class="section-heading">
+        <div>
+          <p class="kicker">Selected work</p>
+          <h2>Experiments with visible evidence.</h2>
+        </div>
+        <a class="more" href={sitePath('projects/')}>All projects</a>
+      </section>
+
+      <section class="project-showcase">
+        {projects.slice(0, 2).map((project) => (
+          <article class="project-card">
+            {project.image && (
+              <img class="project-card-image" src={sitePath(project.image)} alt={project.imageAlt} loading="lazy" />
+            )}
+            <div class="project-card-overlay"></div>
+            <div class="project-card-body">
+              <p class="project-status">{project.status}</p>
+              <h3>{project.title}</h3>
+              <p>{project.summary}</p>
+              <div class="tags">
+                {project.tags.map((tag) => <span class="project-tag">{tag}</span>)}
               </div>
-            ) : null
-          }
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section class="research-snapshot">
+        <div>
+          <p class="kicker">Research map</p>
+          <h2>Three connected questions.</h2>
+        </div>
+        <div class="theme-list">
+          {researchThemes.map((theme, index) => (
+            <article>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <div>
+                <h3>{theme.title}</h3>
+                <p>{theme.description}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      <section class="card list-card">
-        <div class="section-title">
-          <h2>Recent posts</h2>
-          <a class="more" href={sitePath('blog/')}>View all →</a>
-        </div>
-        {
-          recentPosts.length > 0 ? (
-            <div class="item-list">
-              {recentPosts.map((post) => (
-                <a href={sitePath(`blog/${post.id.replace(/\.(md|mdx)$/, '')}/`)}>
-                  <h3>{post.data.title}</h3>
-                  {post.data.description && <p>{post.data.description}</p>}
-                  <time>{post.data.date.toISOString().slice(0, 10)}</time>
-                </a>
-              ))}
-            </div>
-          ) : null
-        }
-      </section>
+      <section class="home-bottom-grid">
+        <section class="quiet-panel">
+          <div class="section-title">
+            <h2>Current</h2>
+          </div>
+          <div class="item-list">
+            {activities.map((item) => (
+              <article>
+                <h3>{item.title}</h3>
+                <time>{item.date}</time>
+              </article>
+            ))}
+          </div>
+        </section>
 
-      <section class="card activity">
-        <div class="section-title">
-          <h2>Activity</h2>
-        </div>
-        {
-          activities.length > 0 ? (
-            <div class="item-list">
-              {activities.map((item) => (
-                <article>
-                  <h3>{item.title}</h3>
-                  <time>{item.date}</time>
-                </article>
-              ))}
-            </div>
-          ) : null
-        }
+        <section class="quiet-panel">
+          <div class="section-title">
+            <h2>Writing</h2>
+            <a class="more" href={sitePath('blog/')}>All posts</a>
+          </div>
+          <div class="item-list">
+            {recentPosts.map((post) => (
+              <a href={sitePath(`blog/${post.id.replace(/\.(md|mdx)$/, '')}/`)}>
+                <h3>{post.data.title}</h3>
+                <time>{post.data.date.toISOString().slice(0, 10)}</time>
+              </a>
+            ))}
+          </div>
+        </section>
       </section>
     </section>
   </main>
