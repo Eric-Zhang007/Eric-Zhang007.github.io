@@ -38,7 +38,7 @@ def get_papers_from_date(date: str) -> list[dict]:
     papers = []
     if os.path.exists(guide_path):
         with open(guide_path) as f: text = f.read()
-        for m in re.finditer(r'\|\s*\d+\s*\|\s*([\d.]+)\s*\|\s*(.+?)\s*\|', text):
+        for m in re.finditer(r'\|\s*\d+\s*\|\s*([\d.]+(?:v\d+)?)\s*\|\s*(.+?)\s*\|', text):
             aid, title = m.group(1).strip(), m.group(2).strip()
             if len(aid) >= 8 and aid.count('.') >= 1:
                 if not any(p['arxiv_id'] == aid for p in papers):

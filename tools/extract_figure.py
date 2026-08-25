@@ -16,14 +16,27 @@ def extract_figure(arxiv_id: str) -> str | None:
     except Exception:
         return None
     
-    figs = re.findall(r'<img[^>]*src="([^"]*x\d+[^"]*\.(?:png|jpg|jpeg))"', html, re.I)
+    # LaTeXML figure names are semantic (e.g. framework_overview.png); also
+    # accept legacy xNNN suffixed names. Exclude static assets, svg, data URIs.
+    figs = re.findall(r'<img[^>]*src="([^"]*\.(?:png|jpg|jpeg))"', html, re.I)
+    figs = [f for f in figs
+            if not f.startswith(('data:', '/static', 'http'))
+            and '/static/' not in f
+            and 'logo' not in f.lower()]
     if not figs:
         return None
     
-    # Use the first figure — arxiv src includes version dir, URL uses just filename
+    # Use the first figure — arxiv src may be "IDv1/name.png" or plain "name.png"
     fig_src = figs[0]
-    filename = fig_src.rsplit('/', 1)[-1]
-    full_url = f'https://arxiv.org/html/{arxiv_id}v1/{filename}'
+    if fig_src.startswith('http'):
+        full_url = fig_src
+        filename = fig_src.rsplit('/', 1)[-1]
+    elif re.match(r'^\d{4}\.\d{4,5}v\d+/', fig_src):
+        full_url = f'https://arxiv.org/html/{fig_src}'
+        filename = fig_src.rsplit('/', 1)[-1]
+    else:
+        filename = fig_src.rsplit('/', 1)[-1]
+        full_url = f'https://arxiv.org/html/{arxiv_id}v1/{filename}'
     
     ext = filename.rsplit('.', 1)[-1].lower()
     if ext not in ('png', 'jpg', 'jpeg'):
