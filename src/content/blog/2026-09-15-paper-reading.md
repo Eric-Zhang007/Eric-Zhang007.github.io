@@ -78,6 +78,8 @@ draft: false
 
 <p class="paper-card-summary">E2E 自动驾驶的学习式风险场：显式、可微、planning-aligned 的时空风险表示。</p>
 
+<figure class="paper-card-figure"><img src="/images/blog/paper-2609.12371.png" alt="READ: Learning Risk-Informed Fields for End-to-End Autonomous Driving" loading="lazy" /></figure>
+
 </div>
 
 <div class="paper-card">
