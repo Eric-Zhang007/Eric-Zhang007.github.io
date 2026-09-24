@@ -52,7 +52,7 @@ draft: false
 
 <p class="paper-card-summary">把物理条件多样性做成显式评测维度：13 个物理属性连续变化。</p>
 
-<figure class="paper-card-figure"><img src="/images/blog/paper-2609.26292.jpg" alt="RoboTwin-Phys: Do WAMs and VLAs Understand the Physical World?" loading="lazy" /></figure>
+<figure class="paper-card-figure"><img src="/images/blog/paper-2609.26292.png" alt="RoboTwin-Phys: Do WAMs and VLAs Understand the Physical World?" loading="lazy" /></figure>
 
 </div>
 
