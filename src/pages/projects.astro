@@ -12,7 +12,7 @@ import { projects, sitePath } from '../data/site';
       {projects.map((project) => (
         <article class:list={['project-card', 'project-card-full', { 'project-card-text': !project.image }]}>
           {project.image && (
-            <img class="project-card-image" src={sitePath(project.image)} alt={project.imageAlt} loading="lazy" />
+            <img class="project-card-image" src={sitePath(project.image)} alt={project.imageAlt} loading="lazy" style={project.imagePosition ? `object-position: ${project.imagePosition}` : undefined} />
           )}
           {project.image && <div class="project-card-overlay"></div>}
           <div class="project-card-body">
@@ -22,13 +22,18 @@ import { projects, sitePath } from '../data/site';
             <div class="tags">
               {project.tags.map((tag) => <span class="project-tag">{tag}</span>)}
             </div>
+            {project.href && (
+              <a class="project-cta" href={project.href} target="_blank" rel="noopener">
+                Project page <span aria-hidden="true">↗</span>
+              </a>
+            )}
           </div>
         </article>
       ))}
     </section>
 
     <p class="project-disclosure">
-      Selected project visuals are shown for research context. Source code and full experimental materials are not public.
+      Selected project visuals are shown for research context.
     </p>
   </main>
 </BaseLayout>

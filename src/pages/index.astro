@@ -51,7 +51,7 @@ const recentPosts = (await getCollection('blog'))
         {projects.slice(0, 2).map((project) => (
           <article class="project-card">
             {project.image && (
-              <img class="project-card-image" src={sitePath(project.image)} alt={project.imageAlt} loading="lazy" />
+              <img class="project-card-image" src={sitePath(project.image)} alt={project.imageAlt} loading="lazy" style={project.imagePosition ? `object-position: ${project.imagePosition}` : undefined} />
             )}
             <div class="project-card-overlay"></div>
             <div class="project-card-body">
@@ -61,6 +61,11 @@ const recentPosts = (await getCollection('blog'))
               <div class="tags">
                 {project.tags.map((tag) => <span class="project-tag">{tag}</span>)}
               </div>
+              {project.href && (
+                <a class="project-cta" href={project.href} target="_blank" rel="noopener">
+                  Project page <span aria-hidden="true">↗</span>
+                </a>
+              )}
             </div>
           </article>
         ))}

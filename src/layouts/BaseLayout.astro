@@ -436,15 +436,40 @@ const { title = `${profile.name} • Personal Site`, description = 'Jiachang Zha
   .work-ledger-list .tags { justify-content: flex-end; align-content: start; }
   .work-ledger-list .project-tag { border-color: var(--line); color: var(--accent-strong); background: var(--accent-soft); }
   .project-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; }
-  .project-grid .project-card:nth-child(1) { grid-column: span 7; }
-  .project-grid .project-card:nth-child(2) { grid-column: span 5; }
-  .project-grid .project-card:nth-child(3) { grid-column: span 12; min-height: 240px; }
+  .project-grid .project-card:nth-child(1) { grid-column: span 12; min-height: 440px; }
+  .project-grid .project-card:nth-child(2) { grid-column: span 7; }
+  .project-grid .project-card:nth-child(3) { grid-column: span 5; }
+  .project-grid .project-card:nth-child(4) { grid-column: span 12; min-height: 240px; }
   .project-card-text { background: color-mix(in srgb, var(--card-solid) 78%, var(--accent-soft)); }
   .project-card-text .project-card-body { align-content: center; max-width: 760px; }
   .project-card-text h2 { color: var(--text); }
   .project-card-text p { color: var(--muted); }
   .project-card-text .project-status { color: var(--accent-strong) !important; }
   .project-card-text .project-tag { border-color: var(--line); color: var(--accent-strong); background: var(--accent-soft); }
+  .project-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: start;
+    margin-top: 4px;
+    padding: 9px 16px 9px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(10, 13, 18, 0.42);
+    font-size: 0.86rem;
+    font-weight: 520;
+    letter-spacing: 0.01em;
+    transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+  }
+  .project-cta::after { content: ""; position: absolute; inset: 0; z-index: 1; }
+  .project-cta:hover,
+  .project-card:hover .project-cta {
+    background: rgba(128, 189, 215, 0.3);
+    border-color: rgba(255, 255, 255, 0.55);
+    transform: translateY(-1px);
+  }
+  .project-cta:focus-visible { outline: 2px solid var(--accent-strong); outline-offset: 2px; }
   .project-disclosure { margin: 0; color: var(--muted); font-size: 0.82rem; }
   .about-title { padding: 10px 0 22px; border-bottom: 1px solid var(--line); background: transparent; box-shadow: none; }
   .about-title h1 { font-size: clamp(2.1rem, 5vw, 4.5rem); font-weight: 500; letter-spacing: 0; }
