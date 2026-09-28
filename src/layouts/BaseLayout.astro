@@ -349,19 +349,19 @@ const { title = `${profile.name} • Personal Site`, description = 'Jiachang Zha
 
   .research-hero {
     position: relative;
-    padding: clamp(28px, 6vw, 64px) 0 42px;
+    padding: clamp(24px, 4vw, 44px) 0 32px;
     border-bottom: 1px solid var(--line);
   }
   .research-hero h1 {
     max-width: 760px;
     margin: 0;
-    font-size: clamp(3.1rem, 7vw, 6.8rem);
+    font-size: clamp(1.8rem, 3.4vw, 2.7rem);
     font-weight: 500;
-    line-height: 0.94;
+    line-height: 1.25;
     letter-spacing: 0;
   }
   .research-hero h1 em { color: var(--accent-strong); font-style: normal; }
-  .hero-copy { max-width: 640px; margin: 24px 0 0; font-size: 1.04rem; }
+  .hero-copy { max-width: 640px; margin: 18px 0 0; font-size: 1.04rem; }
   .signal-row { display: flex; flex-wrap: wrap; gap: 8px; }
   .signal-row span {
     padding: 7px 0;
@@ -435,11 +435,20 @@ const { title = `${profile.name} • Personal Site`, description = 'Jiachang Zha
   .work-ledger-list p { margin: 0; }
   .work-ledger-list .tags { justify-content: flex-end; align-content: start; }
   .work-ledger-list .project-tag { border-color: var(--line); color: var(--accent-strong); background: var(--accent-soft); }
+  .ledger-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    color: var(--accent-strong);
+    font-weight: 520;
+    font-size: 0.92rem;
+  }
+  .ledger-link:hover { text-decoration: underline; }
   .project-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; }
   .project-grid .project-card:nth-child(1) { grid-column: span 12; min-height: 440px; }
   .project-grid .project-card:nth-child(2) { grid-column: span 7; }
   .project-grid .project-card:nth-child(3) { grid-column: span 5; }
-  .project-grid .project-card:nth-child(4) { grid-column: span 12; min-height: 240px; }
   .project-card-text { background: color-mix(in srgb, var(--card-solid) 78%, var(--accent-soft)); }
   .project-card-text .project-card-body { align-content: center; max-width: 760px; }
   .project-card-text h2 { color: var(--text); }

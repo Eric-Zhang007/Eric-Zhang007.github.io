@@ -23,9 +23,9 @@ const recentPosts = (await getCollection('blog'))
     <section class="content">
       <section class="research-hero">
         <p class="kicker">Jiachang Zhang · AI Research</p>
-        <h1>World models<br />for agents in<br />the <em>real world.</em></h1>
+        <h1>World models for agents in the <em>real world.</em></h1>
         <p class="hero-copy">
-          Undergraduate researcher at XJTU and Research Intern at SJTU DMCV Lab.
+          Undergraduate researcher at XJTU and intern at SJTU.
           I work on embodied AI, world models, and data for learning systems.
         </p>
         <div class="hero-links">
@@ -63,7 +63,7 @@ const recentPosts = (await getCollection('blog'))
               </div>
               {project.href && (
                 <a class="project-cta" href={project.href} target="_blank" rel="noopener">
-                  Project page <span aria-hidden="true">↗</span>
+                  {project.hrefLabel ?? 'Project page'} <span aria-hidden="true">↗</span>
                 </a>
               )}
             </div>

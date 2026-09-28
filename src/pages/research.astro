@@ -42,6 +42,11 @@ import { projects, researchInterests, researchThemes, sitePath } from '../data/s
               <p class="project-status">{project.status}</p>
               <h3>{project.title}</h3>
               <p>{project.summary}</p>
+              {project.href && (
+                <a class="ledger-link" href={project.href} target="_blank" rel="noopener">
+                  {project.hrefLabel ?? 'Project page'} <span aria-hidden="true">↗</span>
+                </a>
+              )}
             </div>
             <div class="tags">
               {project.tags.map((tag) => <span class="project-tag">{tag}</span>)}

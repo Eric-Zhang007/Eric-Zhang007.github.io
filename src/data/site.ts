@@ -3,7 +3,7 @@ export const basePath = import.meta.env.BASE_URL;
 export const profile = {
   name: 'Jiachang Zhang',
   brand: 'Jiachang Zhang',
-  location: 'XJTU AI · SJTU DMCV Lab',
+  location: 'XJTU AI · Intern @ SJTU',
   github: 'https://github.com/Eric-Zhang007',
   email: 'zjc010100000@stu.xjtu.edu.cn',
   cvUrl: 'files/Jiachang_Zhang_Research_CV.pdf',
@@ -80,6 +80,7 @@ export const projects: Array<{
   imagePosition?: string;
   tags: string[];
   href?: string;
+  hrefLabel?: string;
 }> = [
   {
     title: 'DIET: DeletIon-response Expert Trimming for Video Diffusion Transformers',
@@ -100,15 +101,8 @@ export const projects: Array<{
     image: 'images/projects/embodied-failure-recovery.png',
     imageAlt: 'An AI2-THOR indoor environment used for embodied recovery data collection.',
     tags: ['Embodied AI', 'AI2-THOR', 'Data collection'],
-  },
-  {
-    title: 'LingBot Video MoE Routing',
-    status: 'Ongoing research',
-    summary:
-      'Controlled analysis of routing behavior and targeted gate interventions in a video mixture-of-experts model.',
-    image: 'images/projects/lingbot-moe.png',
-    imageAlt: 'A generated video frame of an ice cube splashing into a glass.',
-    tags: ['Video models', 'MoE', 'Model analysis'],
+    href: 'https://github.com/Eric-Zhang007/embodied-failure-dataset',
+    hrefLabel: 'GitHub',
   },
   {
     title: 'Multi-Agent World-Model Data Collection',
@@ -125,7 +119,7 @@ export const links = [
 ];
 
 export const activities = [
-  { date: 'Present', title: 'Research Intern · DMCV Lab, Shanghai Jiao Tong University' },
+  { date: 'Present', title: 'Intern @ SJTU' },
   { date: 'Sep 2026', title: 'Entering second year · B.Eng. in Artificial Intelligence, XJTU' },
 ];
 

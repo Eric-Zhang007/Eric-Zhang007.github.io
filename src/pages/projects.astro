@@ -24,7 +24,7 @@ import { projects, sitePath } from '../data/site';
             </div>
             {project.href && (
               <a class="project-cta" href={project.href} target="_blank" rel="noopener">
-                Project page <span aria-hidden="true">↗</span>
+                {project.hrefLabel ?? 'Project page'} <span aria-hidden="true">↗</span>
               </a>
             )}
           </div>
