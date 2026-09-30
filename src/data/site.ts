@@ -84,7 +84,7 @@ export const projects: Array<{
 }> = [
   {
     title: 'DIET: DeletIon-response Expert Trimming for Video Diffusion Transformers',
-    status: 'ICLR 2027 submission',
+    status: 'ICLR 2027 submission · arXiv:2609.37829',
     summary:
       'Training-free pruning of 50% of the experts in a 30B video diffusion transformer: the checkpoint footprint drops from 57 GB to 30 GB, enabling single-card deployment on a 48 GB GPU, with the official VBench Total rising from 0.7941 to 0.8115 on a fixed 284-case protocol.',
     image: 'images/projects/diet-moe-pruning.png',
