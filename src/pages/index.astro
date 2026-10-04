@@ -111,12 +111,13 @@ const recentPosts = (await getCollection('blog'))
           </div>
           <div class="item-list">
             {recentPosts.map((post) => (
-              <a href={sitePath(`blog/${post.id.replace(/\.(md|mdx)$/, '')}/`)}>
+              <a class={post.data.private ? 'pr-item' : undefined} href={sitePath(`blog/${post.id.replace(/\.(md|mdx)$/, '')}/`)}>
                 <h3>{post.data.title}</h3>
                 <time>{post.data.date.toISOString().slice(0, 10)}</time>
               </a>
             ))}
           </div>
+          <a class="pr-locked-hint" href={sitePath('blog/')}>🔒 Paper reading 存档 · 登录后查看</a>
         </section>
       </section>
     </section>

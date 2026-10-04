@@ -8,6 +8,7 @@ tags:
 category: Research
 comments: true
 draft: false
+private: true
 ---
 
 今日从 arXiv 订阅中筛选 10 篇论文。本周 world model 方向论文爆发，Orca 提出通用世界基础模型统一范式。

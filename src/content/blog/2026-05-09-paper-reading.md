@@ -8,6 +8,7 @@ tags:
 category: Research
 comments: true
 draft: false
+private: true
 ---
 
 今日从 arXiv 订阅中筛选 10 篇论文，覆盖世界模型、自动驾驶风险预测、视频推理、具身智能等方向。

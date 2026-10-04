@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { sitePath } from '../../../data/site';
+import PrUnlockChip from '../../../components/PrUnlockChip.astro';
 import { sectionCollections } from '../../../data/blog';
 
 export async function getStaticPaths() {
@@ -21,12 +22,14 @@ const posts = (await getCollection('blog'))
       <h1>{collection.label}</h1>
     </section>
 
+    <PrUnlockChip />
+
     <section class="post-grid">
       {posts.map((post) => {
         const slug = post.id.replace(/\.(md|mdx)$/, '');
         const cover = post.data.cover ? sitePath(post.data.cover) : undefined;
         return (
-          <a class="post-card image-post-card" href={sitePath(`blog/${slug}/`)}>
+          <a class:list={['post-card', 'image-post-card', { 'pr-item': post.data.private }]} href={sitePath(`blog/${slug}/`)}>
             <figure class="post-cover">
               {cover ? <img src={cover} alt={`${post.data.title} cover`} loading="lazy" /> : <div class="generated-cover">{post.data.title.slice(0, 2)}</div>}
             </figure>

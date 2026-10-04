@@ -29,6 +29,8 @@ const readMinutes = Math.max(1, Math.ceil(post.body.split(/\s+/).filter(Boolean)
 const arxivUrl = post.data.paperUrl ?? (post.data.arxivId ? `https://arxiv.org/abs/${post.data.arxivId}` : undefined);
 const translationUrl = post.data.translationUrl ?? (post.data.arxivId ? `https://hjfy.top/arxiv/${post.data.arxivId}` : undefined);
 const showComments = post.data.comments && comments.enabled;
+const isPrivate = post.data.private;
+const neighborsHiddenWhenLocked = (!previousPost || previousPost.data.private) && (!nextPost || nextPost.data.private);
 const collection = post.data.collection
   ? sectionCollections.blog.find((item) => item.slug === post.data.collection)
   : undefined;
@@ -39,11 +41,16 @@ const pageUrl = `https://eric-zhang007.github.io/astro-github-pages-site/blog/${
 const licenseHref = 'https://creativecommons.org/licenses/by-nc-sa/4.0/';
 ---
 
-<BaseLayout title={`${post.data.title} • Jiachang Zhang`} description={post.data.description}>
+<BaseLayout title={`${post.data.title} • Jiachang Zhang`} description={post.data.description} noindex={isPrivate}>
   <div class="read-progress" aria-hidden="true"></div>
   <main class="article-layout">
     <article class="article card">
       <a class="back-link" href={sitePath('blog/')}>← Back to Blog</a>
+      {isPrivate && (
+        <div class="pr-session">
+          <button type="button" data-pr-lock>已登录 · 点此锁定</button>
+        </div>
+      )}
       <header class="article-header">
         <p class="kicker">{post.data.category ?? 'Blog'}</p>
         <h1>{post.data.title}</h1>
@@ -83,9 +90,23 @@ const licenseHref = 'https://creativecommons.org/licenses/by-nc-sa/4.0/';
         }
       </header>
 
-      <div class="article-body">
-        <Content />
-      </div>
+      {isPrivate && (
+        <section class="pr-lock-panel" aria-label="Login required">
+          <p class="kicker">Private</p>
+          <h2>登录后可查看</h2>
+          <p>Paper Reading 归档已设为登录可见。输入访问口令解锁；解锁状态保存在本机浏览器。</p>
+          <form data-pr-form class="pr-unlock-form">
+            <input data-pr-input type="password" name="pr-password" autocomplete="current-password" placeholder="访问口令" required aria-label="Paper reading access password" />
+            <button type="submit">解锁</button>
+            <span data-pr-msg class="pr-msg" role="status"></span>
+          </form>
+        </section>
+      )}
+
+      <div class={isPrivate ? 'pr-content' : undefined}>
+        <div class="article-body">
+          <Content />
+        </div>
 
       {
         post.data.figures.length > 0 && (
@@ -135,12 +156,12 @@ const licenseHref = 'https://creativecommons.org/licenses/by-nc-sa/4.0/';
         <span>$</span>
       </a>
 
-      <nav class="post-neighbors" aria-label="Adjacent posts">
+      <nav class:list={['post-neighbors', { 'pr-content': neighborsHiddenWhenLocked }]} aria-label="Adjacent posts">
         <div>
-          {previousPost && <a href={sitePath(`blog/${previousPost.id.replace(/\.(md|mdx)$/, '')}/`)}>‹ {previousPost.data.title}</a>}
+          {previousPost && <a class={previousPost.data.private ? 'pr-item' : undefined} href={sitePath(`blog/${previousPost.id.replace(/\.(md|mdx)$/, '')}/`)}>‹ {previousPost.data.title}</a>}
         </div>
         <div>
-          {nextPost && <a href={sitePath(`blog/${nextPost.id.replace(/\.(md|mdx)$/, '')}/`)}>{nextPost.data.title} ›</a>}
+          {nextPost && <a class={nextPost.data.private ? 'pr-item' : undefined} href={sitePath(`blog/${nextPost.id.replace(/\.(md|mdx)$/, '')}/`)}>{nextPost.data.title} ›</a>}
         </div>
       </nav>
 
@@ -162,9 +183,10 @@ const licenseHref = 'https://creativecommons.org/licenses/by-nc-sa/4.0/';
           </section>
         )
       }
+      </div>
     </article>
 
-    <aside class="toc-panel card" aria-label="Table of contents">
+    <aside class:list={['toc-panel', 'card', { 'pr-content': isPrivate }]} aria-label="Table of contents">
       <p class="toc-title">CONTENTS</p>
       {
         toc.length > 0 && (

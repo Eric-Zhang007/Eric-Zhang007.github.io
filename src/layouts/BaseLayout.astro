@@ -4,9 +4,10 @@ import { navItems, profile, sitePath } from '../data/site';
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title = `${profile.name} • Personal Site`, description = 'Jiachang Zhang: research on embodied AI, world models, and video learning systems.' } = Astro.props;
+const { title = `${profile.name} • Personal Site`, description = 'Jiachang Zhang: research on embodied AI, world models, and video learning systems.', noindex = false } = Astro.props;
 ---
 
 <html lang="zh-CN">
@@ -19,12 +20,18 @@ const { title = `${profile.name} • Personal Site`, description = 'Jiachang Zha
     <script is:inline>
       document.documentElement.classList.add('is-loading');
     </script>
+    <script is:inline>
+      try {
+        if (localStorage.getItem('paper-reading-unlock') === '1') document.documentElement.classList.add('pr-unlocked');
+      } catch (error) {}
+    </script>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href={sitePath('favicon.svg')} />
     <link rel="icon" href={sitePath('favicon.ico')} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <title>{title}</title>
   </head>
   <body>
@@ -122,6 +129,48 @@ const { title = `${profile.name} • Personal Site`, description = 'Jiachang Zha
         updateProgress();
         window.addEventListener('scroll', updateProgress, { passive: true });
       }
+    </script>
+    <script is:inline>
+      (() => {
+        const KEY = 'paper-reading-unlock';
+        const HASH = 'af64ca73aa965f4b0e69c4f8cdea20e137a30a2689a668058321ce00891aafed';
+        const sha256 = async (value) => {
+          const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value));
+          return Array.from(new Uint8Array(digest)).map((byte) => byte.toString(16).padStart(2, '0')).join('');
+        };
+        document.addEventListener('submit', async (event) => {
+          const form = event.target instanceof HTMLElement ? event.target.closest('[data-pr-form]') : null;
+          if (!form) return;
+          event.preventDefault();
+          const input = form.querySelector('[data-pr-input]');
+          const message = form.querySelector('[data-pr-msg]');
+          const value = input instanceof HTMLInputElement ? input.value.trim() : '';
+          if (!value) return;
+          if (!(window.crypto && crypto.subtle)) {
+            if (message) message.textContent = '当前环境不支持解锁（需要 HTTPS）';
+            return;
+          }
+          try {
+            const hex = await sha256(value);
+            if (hex === HASH) {
+              try { localStorage.setItem(KEY, '1'); } catch (error) {}
+              document.documentElement.classList.add('pr-unlocked');
+              if (message) message.textContent = '';
+              form.reset();
+            } else if (message) {
+              message.textContent = '口令不对';
+            }
+          } catch (error) {
+            if (message) message.textContent = '解锁失败，请重试';
+          }
+        });
+        document.addEventListener('click', (event) => {
+          const lock = event.target instanceof HTMLElement ? event.target.closest('[data-pr-lock]') : null;
+          if (!lock) return;
+          try { localStorage.removeItem(KEY); } catch (error) {}
+          document.documentElement.classList.remove('pr-unlocked');
+        });
+      })();
     </script>
   </body>
 </html>
@@ -1089,4 +1138,31 @@ const { title = `${profile.name} • Personal Site`, description = 'Jiachang Zha
     .article { padding: 24px; }
     .toc-nav { max-height: 220px; overflow: auto; }
   }
+
+  /* Paper-reading login gate (added 2026-10-04) */
+  html:not(.pr-unlocked) .pr-item { display: none; }
+  html:not(.pr-unlocked) .pr-content { display: none; }
+  .pr-lock-panel { display: none; margin-top: 30px; padding: clamp(20px, 3vw, 30px); border: 1px dashed var(--line); border-radius: 24px; background: color-mix(in srgb, var(--card-solid) 42%, transparent); }
+  html:not(.pr-unlocked) .pr-lock-panel { display: block; }
+  .pr-lock-panel h2 { margin: 0 0 8px; font-size: 1.15rem; font-weight: 520; }
+  .pr-unlock-form { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 16px; }
+  .pr-unlock-form input { flex: 0 1 240px; border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; color: var(--text); background: color-mix(in srgb, var(--card-solid) 48%, transparent); font: inherit; }
+  .pr-unlock-form button { border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; color: var(--text); background: var(--accent-soft); font: inherit; cursor: pointer; }
+  .pr-unlock-form button:hover { background: color-mix(in srgb, var(--accent-soft) 70%, var(--card-solid)); }
+  .pr-msg { min-height: 1em; color: #d98c8c; font-size: 0.85rem; }
+  .pr-session { display: none; justify-content: flex-end; margin: 0 0 14px; }
+  html.pr-unlocked .pr-session { display: flex; }
+  .pr-session button { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; color: var(--muted); background: color-mix(in srgb, var(--card-solid) 48%, transparent); font: inherit; font-size: 0.82rem; cursor: pointer; }
+  .pr-session button:hover { color: var(--text); background: var(--accent-soft); }
+  .pr-login-chip { padding: 6px 18px; border-style: dashed; }
+  .pr-login-chip summary { display: flex; align-items: center; gap: 8px; padding: 10px 0; color: var(--muted); font-size: 0.88rem; cursor: pointer; list-style: none; }
+  .pr-login-chip summary::-webkit-details-marker { display: none; }
+  .pr-login-chip[open] summary { color: var(--text); }
+  .pr-login-chip .pr-unlock-form { padding-bottom: 14px; margin-top: 0; }
+  html.pr-unlocked .pr-login-chip { display: none; }
+  .pr-locked-hint { display: none; margin: 0; color: var(--muted); font-size: 0.9rem; }
+  html:not(.pr-unlocked) .pr-locked-hint { display: inline-flex; }
+  .pr-count-all { display: none; }
+  html.pr-unlocked .pr-count-public { display: none; }
+  html.pr-unlocked .pr-count-all { display: inline; }
 </style>

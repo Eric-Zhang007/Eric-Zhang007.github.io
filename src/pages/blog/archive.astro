@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { sitePath } from '../../data/site';
+import PrUnlockChip from '../../components/PrUnlockChip.astro';
 
 const posts = (await getCollection('blog'))
   .filter((post) => !post.data.draft)
@@ -17,6 +18,8 @@ const years = Array.from(new Set(posts.map((post) => post.data.date.getFullYear(
       <h1>Posts by years</h1>
     </section>
 
+    <PrUnlockChip />
+
     <section class="archive-list card">
       {years.map((year) => (
         <section class="archive-year" id={`${year}`}>
@@ -25,7 +28,7 @@ const years = Array.from(new Set(posts.map((post) => post.data.date.getFullYear(
             {posts.filter((post) => post.data.date.getFullYear() === year).map((post) => {
               const slug = post.id.replace(/\.(md|mdx)$/, '');
               return (
-                <a href={sitePath(`blog/${slug}/`)}>
+                <a class={post.data.private ? 'pr-item' : undefined} href={sitePath(`blog/${slug}/`)}>
                   <time>{post.data.date.toISOString().slice(5, 10)}</time>
                   <span>{post.data.title}</span>
                 </a>

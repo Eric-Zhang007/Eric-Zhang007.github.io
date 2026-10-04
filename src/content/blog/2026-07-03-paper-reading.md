@@ -8,6 +8,7 @@ tags:
 category: Research
 comments: true
 draft: false
+private: true
 ---
 
 今日从 arXiv 订阅 19 篇中筛选 7 篇。主线：VLA+自动驾驶 / 3D 空间推理 / 可控世界模拟器。

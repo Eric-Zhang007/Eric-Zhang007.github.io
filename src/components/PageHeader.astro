@@ -2,19 +2,28 @@
 interface Props {
   title: string;
   count?: number;
+  publicCount?: number;
   itemLabel?: string;
   actionLabel?: string;
   actionHref?: string;
 }
 
-const { title, count, itemLabel = 'items', actionLabel, actionHref } = Astro.props;
+const { title, count, itemLabel = 'items', publicCount, actionLabel, actionHref } = Astro.props;
 const showMeta = typeof count === 'number';
 ---
 
 <section class="page-title card page-header">
   <div>
     <h1>{title}</h1>
-    {showMeta && <p>Page 1 - Showing {count} of {count} {itemLabel}</p>}
+    {showMeta && (
+      <p>
+        {typeof publicCount === 'number' ? (
+          <>Page 1 - Showing <span class="pr-count-public">{publicCount}</span><span class="pr-count-all">{count}</span> of{' '}<span class="pr-count-public">{publicCount}</span><span class="pr-count-all">{count}</span> {itemLabel}</>
+        ) : (
+          <>Page 1 - Showing {count} of {count} {itemLabel}</>
+        )}
+      </p>
+    )}
   </div>
   {actionHref && actionLabel && <a href={actionHref}>{actionLabel}</a>}
 </section>

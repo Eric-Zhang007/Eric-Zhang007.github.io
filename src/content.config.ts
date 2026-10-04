@@ -21,6 +21,7 @@ const entrySchema = z.object({
   })).default([]),
   comments: z.boolean().default(true),
   draft: z.boolean().default(false),
+  private: z.boolean().default(false),
 });
 
 const blog = defineCollection({

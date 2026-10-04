@@ -5,6 +5,7 @@ import PageHeader from '../components/PageHeader.astro';
 import SectionSidebar from '../components/SectionSidebar.astro';
 import { sitePath } from '../data/site';
 import { sectionCollections, uniqueTags } from '../data/blog';
+import PrUnlockChip from '../components/PrUnlockChip.astro';
 
 const blogPosts = (await getCollection('blog'))
   .filter((post) => !post.data.draft)
@@ -12,11 +13,14 @@ const blogPosts = (await getCollection('blog'))
 
 const tags = uniqueTags(blogPosts);
 const totalPosts = blogPosts.length;
+const publicPosts = blogPosts.filter((post) => !post.data.private).length;
 ---
 
 <BaseLayout title="Blog • Jiachang Zhang">
   <main class="blog-index compact-blog-index">
-    <PageHeader title="Blog" count={totalPosts} itemLabel="posts" actionLabel="View all posts by years →" actionHref={sitePath('blog/archive/')} />
+    <PageHeader title="Blog" count={totalPosts} publicCount={publicPosts} itemLabel="posts" actionLabel="View all posts by years →" actionHref={sitePath('blog/archive/')} />
+
+    <PrUnlockChip />
 
     <section class="blog-shell blog-shell-rightbar">
       <section class="post-grid" id="research">
@@ -26,7 +30,7 @@ const totalPosts = blogPosts.length;
             const cover = post.data.cover ? sitePath(post.data.cover) : undefined;
             const category = post.data.category;
             return (
-              <a class="post-card image-post-card" href={sitePath(`blog/${slug}/`)}>
+              <a class:list={['post-card', 'image-post-card', { 'pr-item': post.data.private }]} href={sitePath(`blog/${slug}/`)}>
                 <figure class="post-cover">
                   {cover ? <img src={cover} alt={`${post.data.title} cover`} loading="lazy" /> : <div class="generated-cover">{post.data.title.slice(0, 2)}</div>}
                 </figure>
